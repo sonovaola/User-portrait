@@ -1,47 +1,46 @@
 let yearOfBirth = prompt('Вкажiть ваш рiк народження у форматi ДД-ММ-РРРР');
 	const todayYear = 2022;
-	if (yearOfBirth === null) {
-		alert ('Шкода, що Ви не захотіли ввести свій(ю) рiк народження')
-		}	
-		else {
-			let yearOfBirthComponents = yearOfBirth.split('-');
-				if (yearOfBirthComponents.length !== 3) {
-					alert ('Невірний формат! Повинно бути 2 розділювача у вигляді тире ДД-ММ-РРРР')
-					}
-					else if (yearOfBirthComponents[0].length !==2 || Number.isNaN(yearOfBirthComponents[0] )) {
-						alert ('Ви невірно ввели ДЕНЬ')
-					}
-					else if (yearOfBirthComponents[1].length !==2 || Number.isNaN(yearOfBirthComponents[1] )) {
-						alert ('Ви невірно ввели МІСЯЦЬ')
-					}
-					else if (yearOfBirthComponents[2].length !==4 || Number.isNaN(yearOfBirthComponents[2] )) {
-						alert ('Ви невірно ввели РІК')
-					}
-					else {
-						const day = (yearOfBirthComponents[0]);
-						const month = (yearOfBirthComponents[1]);
-						var year = +(yearOfBirthComponents[2]);
+    let yearOfBirthComponents = yearOfBirth.split('-');
 
-						if ( month < 1 || month > 12){
-							alert ('Невірна дата: Ви невірно ввели МІСЯЦЬ')
-							}
-						else if (1940 > year && year > 2010){
-							alert ('Ви невірно ввели РІК. Діапазон з 1940 по 2010')
-							}
-						else if ( day < 1 || day > 31) {
-							alert ('Невірна дата: Ви невірно ввели ДЕНЬ')
-							}
-						else if (month === 2 && day > 29) {
-							alert ('Невірна дата: У лютому не може бути більше 29 днів')
-							}
-						else if (month === 2 && day === 29 && !leapYear(year)) {
-							alert ('Невірна дата: Цей рік не високосний') 
-							}	
-						else if(day === 31 && (month === 4 || month === 6 || month === 9 || month === 11)) {
-							alert ('Невірна дата: В цьому місяці немає 31 дня') 
-							}
-					}
+	if (yearOfBirthComponents.length !== 3) {
+		alert ('Невірний формат! Повинно бути 2 розділювача у вигляді тире ДД-ММ-РРРР')
 			}
+				else if (yearOfBirthComponents[0].length !==2 || Number.isNaN(yearOfBirthComponents[0] )) {
+					alert ('Ви невірно ввели ДЕНЬ')
+					}
+				else if (yearOfBirthComponents[1].length !==2 || Number.isNaN(yearOfBirthComponents[1] )) {
+					alert ('Ви невірно ввели МІСЯЦЬ')
+					}
+				else if (yearOfBirthComponents[2].length !==4 || Number.isNaN(yearOfBirthComponents[2] )) {
+					alert ('Ви невірно ввели РІК')
+					}
+				else {
+					const day = Number(yearOfBirthComponents[0])
+					const month = Number(yearOfBirthComponents[1])
+					var year = Number(yearOfBirthComponents[2])
+
+					if (1940 > year || year > 2010){
+						alert ('Ви невірно ввели РІК. Діапазон з 1940 по 2010')
+							}
+					else if ( month < 1 || month > 12){
+						alert ('Невірна дата: Ви невірно ввели МІСЯЦЬ')
+							}
+					else if ( day < 1 || day > 31) {
+						alert ('Невірна дата: Ви невірно ввели ДЕНЬ')
+							}
+				    else if (month === 2 && day > 29) {
+						alert ('Невірна дата: У лютому не може бути більше 29 днів')
+							}
+					else if (month === 2 && day === 29 && !leapYear(year)) {
+						alert ('Невірна дата: Цей рік не високосний') 
+							}	
+					else if(day === 31 && (month === 4 || month === 6 || month === 9 || month === 11)) {
+						alert ('Невірна дата: В цьому місяці немає 31 дня') 
+							}
+                    else (yearOfBirth === null || yearOfBirth.trim() === '') {
+                        alert ('Шкода, що Ви не захотіли ввести свій(ю) рiк народження')
+                            }	
+			        }
 			
 	const currentCity = prompt('Вкажiть ваше мiсто проживання');
 			switch (true) {
@@ -70,13 +69,16 @@ let yearOfBirth = prompt('Вкажiть ваш рiк народження у ф�
 
 			switch (true) {
 				case yearOfBirth !== null:
-				case (1940 < year && year < 2010):
+				case (1940 < year || year < 2010):
 				case isNaN(currentCity) :
 				case currentCity !== null :
-				case (/[0-9]/.test(currentCity)) :
-					alert (`Міні-Анкета:\nТвій вік: ${todayYear - year} років! \nТи живеш у місті  ${currentCity}.`);
+				case (!(/[0-9]/.test(currentCity))): 
+                case (currentCity.trim() === ''):
+					alert (`Міні-Анкета:\nТвій вік: ${todayYear - year} років! \nТи живеш у місті  ${currentCity}.`)
+                    break;
 				default :
 					alert('Щось пішло не так. Спробуй потім ще раз :(');
+                    break;
 			}
 	
 
