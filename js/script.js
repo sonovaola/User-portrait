@@ -1,10 +1,16 @@
 let yearOfBirth = prompt('Вкажiть ваш рiк народження у форматi ДД-ММ-РРРР');
 	const todayYear = 2022;
-    let yearOfBirthComponents = yearOfBirth.split('-');
 
-	if (yearOfBirthComponents.length !== 3) {
-		alert ('Невірний формат! Повинно бути 2 розділювача у вигляді тире ДД-ММ-РРРР')
+	if (!(yearOfBirth.includes('-'))) {
+		alert ('Невірний формат! Повинно бути 2 розділювача у вигляді тире ДД-ММ-РРРР') 
+			}// срабатывает если ничего не вводить
+
+			else if(yearOfBirthComponents = date.split('-')) {
+				alert ('Невірний формат! Повинно бути ДД-ММ-РРРР')
 			}
+			else if((yearOfBirthComponents.length !== 3)) {
+					alert ('Невірний формат! Повинно бути 3 элемента ДД-ММ-РРРР')
+				}
 				else if (yearOfBirthComponents[0].length !==2 || Number.isNaN(yearOfBirthComponents[0] )) {
 					alert ('Ви невірно ввели ДЕНЬ')
 					}
@@ -37,10 +43,11 @@ let yearOfBirth = prompt('Вкажiть ваш рiк народження у ф�
 					else if(day === 31 && (month === 4 || month === 6 || month === 9 || month === 11)) {
 						alert ('Невірна дата: В цьому місяці немає 31 дня') 
 							}
-                    else if (yearOfBirth === null || yearOfBirth.trim() === '') {
-                        alert ('Шкода, що Ви не захотіли ввести свій(ю) рiк народження')
-                            }	
-			        }
+				}
+	if (yearOfBirth === null || yearOfBirth.trim() === '') {
+			alert ('Шкода, що Ви не захотіли ввести свій(ю) рiк народження')
+			}	
+			
 			
 	const currentCity = prompt('Вкажiть ваше мiсто проживання');
 			switch (true) {
@@ -68,12 +75,13 @@ let yearOfBirth = prompt('Вкажiть ваш рiк народження у ф�
 			}
 
 			switch (true) {
-				case yearOfBirth !== null:
+				case yearOfBirth === null:
 				case (1940 < year || year < 2010):
 				case isNaN(currentCity) :
 				case currentCity !== null :
 				case (!(/[0-9]/.test(currentCity))): 
                 case (currentCity.trim() === ''):
+				case (yearOfBirth === ''):
 					alert (`Міні-Анкета:\nТвій вік: ${todayYear - year} років! \nТи живеш у місті  ${currentCity}.`)
                     break;
 				default :
