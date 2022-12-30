@@ -37,7 +37,7 @@ let yearOfBirth = prompt('Вкажiть ваш рiк народження у ф�
 					else if(day === 31 && (month === 4 || month === 6 || month === 9 || month === 11)) {
 						alert ('Невірна дата: В цьому місяці немає 31 дня') 
 							}
-                    else (yearOfBirth === null || yearOfBirth.trim() === '') {
+                    else if (yearOfBirth === null || yearOfBirth.trim() === '') {
                         alert ('Шкода, що Ви не захотіли ввести свій(ю) рiк народження')
                             }	
 			        }
